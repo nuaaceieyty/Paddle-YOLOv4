@@ -1,0 +1,41 @@
+worker_num: 4
+TrainReader:
+  inputs_def:
+    num_max_boxes: 150
+  sample_transforms:
+    - Decode: {resized_shape: 416}
+    - Mosaic: {target_size: 416}
+    - RandomDistort: {}
+    - RandomCrop: {target_size: [416, 416]}
+    - RandomFlip: {}
+  batch_transforms:
+    - BatchRandomResize: {target_size: [416], random_size: True, random_interp: True, keep_ratio: False}
+    - NormalizeBox: {}
+    - PadBox: {num_max_boxes: 150}
+    - BboxXYXY2XYWH: {}
+    - NormalizeImage: {mean: [0, 0, 0], std: [1, 1, 1], is_scale: True}
+    - Permute: {}
+    - Gt2YoloTarget: {anchor_masks: [[6, 7, 8], [3, 4, 5], [0, 1, 2]], anchors: [[8, 11], [13, 25], [27, 19], [25, 51], [52,38], [49, 100], [97, 75], [131, 166], [314, 274]], downsample_ratios: [32, 16, 8], iou_thresh: 0.213}
+  batch_size: 24
+  shuffle: true
+  drop_last: true
+  mosaic_epoch: 25000
+  use_shared_memory: true
+
+EvalReader:
+  sample_transforms:
+    - Decode: {}
+    - Resize: {target_size: [416, 416], keep_ratio: False, interp: 2}
+    - NormalizeImage: {mean: [0, 0, 0], std: [1, 1, 1], is_scale: True}
+    - Permute: {}
+  batch_size: 8
+
+TestReader:
+  inputs_def:
+    image_shape: [3, 416, 416]
+  sample_transforms:
+    - Decode: {}
+    - Resize: {target_size: [416, 416], keep_ratio: False, interp: 2}
+    - NormalizeImage: {mean: [0, 0, 0], std: [1, 1, 1], is_scale: True}
+    - Permute: {}
+  batch_size: 1
