@@ -107,11 +107,12 @@ class BaseOperator(object):
 
 @register_op
 class Decode(BaseOperator):
-    def __init__(self, resized_shape=None):
+    def __init__(self, resized_shape=576, is_test=False):
         """ Transform the image data to numpy format following the rgb format
         """
         super(Decode, self).__init__()
         self.resized_shape = resized_shape
+        self.is_test = is_test
 
     def apply(self, sample, context=None):
         """ load image if 'im_file' field is not empty but 'image' is"""
@@ -127,7 +128,7 @@ class Decode(BaseOperator):
             sample['ori_image'] = im
         im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
 
-        if self.resized_shape is not None:
+        if self.resized_shape is not None and not self.is_test:
             #print(im.shape)
             h, w = im.shape[0], im.shape[1]
             interps = [
