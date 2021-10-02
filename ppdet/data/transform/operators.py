@@ -2253,7 +2253,7 @@ class Mosaic(BaseOperator):
     """
 
     def __init__(self,
-                 target_size=608,
+                 target_size=576,
                  mosaic_border=None,
                  fill_value=(114, 114, 114)):
         super(Mosaic, self).__init__()
