@@ -1218,7 +1218,7 @@ class RandomCrop(BaseOperator):
     """
 
     def __init__(self,
-                 target_size=[608, 608],
+                 target_size=[576, 576],
                  aspect_ratio=[1., 1.],
                  thresholds=[.0, .1, .3, .5],
                  scaling=[.5, .5],
