@@ -1,0 +1,19 @@
+metric: COCO
+num_classes: 80
+
+TrainDataset:
+  !COCODataSet
+    image_dir: train2017
+    anno_path: annotations/instances_train2017.json
+    dataset_dir: /root/paddlejob/workspace/code/
+    data_fields: ['image', 'gt_bbox', 'gt_class', 'is_crowd']
+
+EvalDataset:
+  !COCODataSet
+    image_dir: val2017
+    anno_path: annotations/instances_val2017.json
+    dataset_dir: /root/paddlejob/workspace/code/
+
+TestDataset:
+  !ImageFolder
+    anno_path: /root/paddlejob/workspace/code/annotations/instances_val2017.json
