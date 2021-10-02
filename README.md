@@ -24,7 +24,4 @@ PaddlePaddle_v2.1 复现YOLOv4
 
 ![复现结果截图](https://github.com/nuaaceieyty/Paddle-YOLOv2/blob/main/result.JPG)
 
-## 预测
-
-
 (附注：训练日志也在网址：https://aistudio.baidu.com/aistudio/datasetdetail/107066，此为AI Studio脚本任务生成的日志)
