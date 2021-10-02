@@ -26,5 +26,5 @@ PaddlePaddle_v2.1 复现YOLOv4
 
 ![result](./result.JPG)
 
-(附注：训练日志也在网址：https://aistudio.baidu.com/aistudio/datasetdetail/107066， 此为AI Studio脚本任务生成的日志)
+(附注：训练日志也在网址：https://aistudio.baidu.com/aistudio/datasetdetail/107066 ，此为AI Studio脚本任务生成的日志)
 (由于AI Studio脚本任务的时长限制，三天后任务自动终止并得到日志trainer-0.log.txt，我只好接着断点再进行训练并得到日志trainer-1.log.txt)
