@@ -4,9 +4,9 @@ TrainReader:
     num_max_boxes: 150
   sample_transforms:
     - Decode: {resized_shape: 576}
-    - Mosaic: {target_size: 576}
+    - Mosaic: {}
     - RandomDistort: {}
-    - RandomCrop: {target_size: [576, 576]}
+    - RandomCrop: {}
     - RandomFlip: {}
   batch_transforms:
     - BatchRandomResize: {target_size: [320, 352, 384, 416, 448, 480, 512, 544, 576], random_size: True, random_interp: True, keep_ratio: False}
