@@ -12,11 +12,11 @@ This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YO
 - [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 
 **The link of aistudio：**
-- notebook：[https://aistudio.baidu.com/aistudio/projectdetail/2290810](https://aistudio.baidu.com/aistudio/projectdetail/2290810)
+- notebook：[https://aistudio.baidu.com/aistudio/projectdetail/2479219](https://aistudio.baidu.com/aistudio/projectdetail/2479219)
 
 ## 2、Accuracy
 
-The model is trained on the trainval set of VOC2007 and VOC2012, and tested on the test set of VOC2007.
+The model is trained on COCO2017's train set and tested on COCO2017's testdev set (the training can be verified on val set first to evaluate the training of the model).
 
 The mAP given in the paper when the input size is 416x416 is 76.8%, and the mAP obtained in this project is 76.86%.
 ![the result screenshot](result.JPG)
