@@ -4,7 +4,7 @@
 
 ## 一、简介
 
-本项目基于paddlepaddle_v2.1框架复现YOLOv4。YOLOv4是YOLO系列的第四代模型，其在保留YOLOv3检测头编解码方式的同时，通过使用更强的主干网络、更强的特征融合模块、以及更多的数据增强方式，让模型性能相比于YOLOv3有显著的提高，且推理速度已久很快。
+本项目基于paddlepaddle_v2.1框架复现YOLOv4。YOLOv4是YOLO系列的第四代模型，其在保留YOLOv3检测头编解码方式的同时，通过使用更强的主干网络、更强的特征融合模块、以及更多的数据增强方式，让模型性能相比于YOLOv3有显著的提高，且推理速度仍然很快。
 
 **论文:**
 - [1] Bochkovskiy A,Wang C Y,Liao H.YOLOv4:Optimal Speed and Accuracy of Object Detection[J].2020.
