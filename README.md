@@ -8,6 +8,7 @@ This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YO
 
 **Paper:**
 - [1] Bochkovskiy A,Wang C Y,Liao H.YOLOv4:Optimal Speed and Accuracy of Object Detection[J].2020.
+
 **Reference project：**
 - [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 
