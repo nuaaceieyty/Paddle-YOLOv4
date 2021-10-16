@@ -7,6 +7,8 @@
 #     http://www.apache.org/licenses/LICENSE-2.0    
 
 from . import yolo
+from . import meta_arch
 
 from .yolo import *
+from .meta_arch import *
 
