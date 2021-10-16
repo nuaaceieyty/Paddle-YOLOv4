@@ -24,14 +24,15 @@ The AP on testdev set given in the paper when the input size is 416x416 is 41.2%
 
 ## 3、Dataset
 
-[VOC2007+VOC2012 Dataset](https://aistudio.baidu.com/aistudio/datasetdetail/63105)
+[COCO Dataset](https://aistudio.baidu.com/aistudio/datasetdetail/7122)
 - Dataset size:
-    - Training set: 16,551
-    - Test set: 4952
-- Data format: standard VOC format, marked with rectangular boxes
+    - train set: 118,287
+    - val set: 4952
+    - testdev set: 20288
+- Data format: standard COCO format, marked with rectangular boxes
 ## 4、Requirements
 
-- Hardware：CPU、GPU（Tesla V100-32G is recommended）
+- Hardware：CPU、GPU（a machine with four Tesla V100-32G is recommended）
 
 - Framework：
   - PaddlePaddle >= 2.1.2
@@ -42,8 +43,8 @@ The AP on testdev set given in the paper when the input size is 416x416 is 41.2%
 
 ```bash
 # clone this repo
-git clone https://github.com/nuaaceieyty/Paddle-YOLOv2.git
-cd Paddle-YOLOv2
+git clone https://github.com/nuaaceieyty/Paddle-YOLOv4.git
+cd Paddle-YOLOv4
 export PYTHONPATH=./
 ```
 **Install dependencies**
@@ -53,25 +54,32 @@ pip install -r requestments.txt
 
 ### step2: Training
 
-1. Create an Output folder in the top level directory and download darknet backbone pre-training weights (I have converted the official darknet weight to .pdparams) here: https://aistudio.baidu.com/aistudio/datasetdetail/103069.
-2. This project can be trained using a single card Tesla V100-32G. Note: VOC dataset should be prepared in advance, and decompressed into the data directory under the top-level directory (data set address is: https://aistudio.baidu.com/aistudio/datasetdetail/63105). If the dataset address is incorrect, change the corresponding address to the absolute path in the configs/datasets/voc.yml file.
+1. Create an Output folder in the top level directory and download CSPDarkNet backbone pre-training weights (I have converted the official CSPDarkNet weight to .pdparams) here: https://aistudio.baidu.com/aistudio/datasetdetail/103994.
+2. This project can be trained using four card Tesla V100-32G. Note: COCO dataset should be prepared in advance, and decompressed into the data directory under the top-level directory (data set address is: https://aistudio.baidu.com/aistudio/datasetdetail/7122). If the dataset address is incorrect, change the corresponding address to the absolute path in the configs/datasets/coco_detection.yml file.
 
 ```bash
-python3 train.py -c configs/yolov2/yolov2_voc.yml --eval --fp16
+python -m paddle.distributed.launch --gpus 0,1,2,3 train.py -c configs/yolov4/yolov4_coco.yml --eval
 ```
 
 ### step3: Evaluating
 Note: Make sure the best_model.pdparams file is in the output directory.
 ```bash
-python3 tools/eval.py -c configs/yolov2/yolov2_voc.yml
+python3 eval.py -c configs/yolov4/yolov4_coco.yml
 ```
+
+### step4: Generate results of testdev set for submission
+Note: Make sure the best_model.pdparams file is in the output directory.
+```bash
+python3 eval.py -c configs/yolov4/yolov4_coco_test.yml
+```
+Zip the bbox. Json file generated in the live directory and send it to the evaluation server
 
 ### Prediction using pre training model
 
 Put the images to be tested in the data directory, run the following command, and save the output images in the Output directory; If there is a GPU in the machine environment, delete -o use_gpu=False from the command
 
 ```bash
-python3 predict.py -c configs/yolov2/yolov2_voc.yml --infer_img data/dog.jpg -o use_gpu=False
+python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/kite.jpg -o use_gpu=False
 ```
 The result is shown as follows：
 
@@ -116,9 +124,9 @@ For other information about the model, please refer to the following table:
 | information | description |
 | --- | --- |
 | Author | YU Tianyang(EICAS)|
-| Date | 2021.08 |
+| Date | 2021.10 |
 | Framework version | Paddle 2.1.2 |
 | Application scenarios | Object detection |
 | Support hardware | GPU、CPU |
-| Download link | [Pre training model](https://aistudio.baidu.com/aistudio/datasetdetail/103354)|
-| Online operation | [notebook](https://aistudio.baidu.com/aistudio/projectdetail/2290810)|
+| Download link | [Pre training model](https://aistudio.baidu.com/aistudio/datasetdetail/107066)|
+| Online operation | [notebook](https://aistudio.baidu.com/aistudio/projectdetail/2479219)|
