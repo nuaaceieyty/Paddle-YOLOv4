@@ -44,8 +44,8 @@
 
 ```bash
 # clone this repo
-git clone https://github.com/nuaaceieyty/Paddle-YOLOv2.git
-cd Paddle-YOLOv2
+git clone https://github.com/nuaaceieyty/Paddle-YOLOv4.git
+cd Paddle-YOLOv4
 export PYTHONPATH=./
 ```
 **安装依赖**
@@ -55,7 +55,7 @@ pip install -r requestments.txt
 
 ### step2: 训练
 
-1. 在顶层目录下创建output文件夹，并在此处下载主干网络Darknet19的预训练权重（我已经将darknet官方提供的转为了pdparams格式），地址为：https://aistudio.baidu.com/aistudio/datasetdetail/103069 。
+1. 在顶层目录下创建output文件夹，并在此处下载主干网络CSPDarkNet的预训练权重（我已经将CSPDarkNet官方提供的转为了pdparams格式），地址为：https://aistudio.baidu.com/aistudio/datasetdetail/103994 。
 2. 本项目使用四卡Tesla V100-32G训练，注意：COCO数据集应该提前下好，并且解压到顶层目录下的data目录中（数据集地址为：https://aistudio.baidu.com/aistudio/datasetdetail/7122 ）。如果出现数据集地址问题，请在configs/datasets/voc.yml文件中将相应地址改为绝对路径。
 
 ```bash
