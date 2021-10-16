@@ -26,7 +26,7 @@ from paddle.optimizer.lr import CosineAnnealingDecay
 import paddle.regularizer as regularizer
 from paddle import cos
 
-from ppdet.core.workspace import register, serializable
+from model.core.workspace import register, serializable
 
 __all__ = ['LearningRate', 'OptimizerBuilder']
 
