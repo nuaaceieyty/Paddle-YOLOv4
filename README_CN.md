@@ -59,21 +59,28 @@ pip install -r requestments.txt
 2. 本项目使用四卡Tesla V100-32G训练，注意：COCO数据集应该提前下好，并且解压到顶层目录下的data目录中（数据集地址为：https://aistudio.baidu.com/aistudio/datasetdetail/7122 ）。如果出现数据集地址问题，请在configs/datasets/coco_detection.yml文件中将相应地址改为绝对路径。
 
 ```bash
-python3 train.py -c configs/yolov4/yolov4_coco.yml --eval
+python -m paddle.distributed.launch --gpus 0,1,2,3 train.py -c configs/yolov4/yolov4_coco.yml --eval
 ```
 
 ### step3: 评估验证
 注意：这里一定要确保best_model.pdparams文件在output目录下
 ```bash
-python3 tools/eval.py -c configs/yolov2/yolov2_voc.yml
+python3 eval.py -c configs/yolov4/yolov4_coco.yml
 ```
+
+### step4: 生成提交testdev结果
+注意：这里一定要确保best_model.pdparams文件在output目录下
+```bash
+python3 eval.py -c configs/yolov4/yolov4_coco_test.yml
+```
+将住目录下生成的bbox.json文件压缩成zip格式后，发送至测评服务器
 
 ### 使用训练好的模型预测
 
 将需要测试的图片放在目录data中， 运行下面指令，输出图片保存在output目录下；如果机器环境中有GPU，则将命令中 -o use_gpu=False 去掉
 
 ```bash
-python3 predict.py -c configs/yolov2/yolov2_voc.yml --infer_img data/dog.jpg -o use_gpu=False
+python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/kite.jpg -o use_gpu=False
 ```
 运行结果如下所示：
 
@@ -103,8 +110,7 @@ python3 predict.py -c configs/yolov2/yolov2_voc.yml --infer_img data/dog.jpg -o 
 |  ----  |  ----  |  ----  |  ----  |
 | config| None, 必选| 配置文件路径 ||
 | --eval| None, 可选| 边训练边验证 |如果不选此项，可能找到best_model会比较麻烦|
-| --fp16| None, 可选| 使用半精度训练 |如果不选此项，32G显存可能不够|
-| --resume| None, 可选 | 恢复训练 |例如：--resume output/yolov4_voc/66 |
+| --resume| None, 可选 | 恢复训练 |例如：--resume output/yolov4_coco/66 |
 
 ### 6.3 训练流程
 
