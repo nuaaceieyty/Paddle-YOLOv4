@@ -4,7 +4,7 @@ English | [简体中文](./README_CN.md)
 
 ## 1、Introduction
 
-This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YOLOv2 is the second generation model of YOLO series. For the first time, it makes YOLO series model detect based on anchor frame, and proposes multi-scale training methods, which lays the foundation for subsequent YOLOv3, YOLOv4, YOLOv5 and PPYOLO.
+This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YOLOv4 is the fourth generation model of YOLO series. While retaining the encoding and decoding mode of YOLOv3 detection head, YOLOv4 uses stronger backbone network, stronger feature fusion module and more data enhancement modes, so that the model performance is significantly improved compared with YOLOv3, and the inference speed is still very fast.
 
 **Paper:**
 - [1] Redmon J, Farhadi A. YOLO9000: better, faster, stronger[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2017: 7263-7271.
