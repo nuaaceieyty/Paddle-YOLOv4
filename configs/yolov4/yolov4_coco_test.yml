@@ -36,7 +36,7 @@ EvalDataset:
   !COCODataSet
     image_dir: test2017
     anno_path: annotations/image_info_test-dev2017.json
-    dataset_dir: /home/aistudio/data/
+    dataset_dir: data/
 
 BBoxPostProcess:
   decode:
@@ -47,7 +47,7 @@ BBoxPostProcess:
     scale_x_y: 1.05
   nms:
     name: MultiClassNMS
-    keep_top_k: 100       #120
-    nms_threshold: 0.6    #0.45
+    keep_top_k: 100      
+    nms_threshold: 0.6   
     nms_top_k: -1
     score_threshold: 0.0005
