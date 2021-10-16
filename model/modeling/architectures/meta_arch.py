@@ -4,7 +4,7 @@ from __future__ import print_function
 
 import paddle
 import paddle.nn as nn
-from ppdet.core.workspace import register
+from model.core.workspace import register
 
 __all__ = ['BaseArch']
 
