@@ -92,8 +92,7 @@ The result is shown as follows：
 
 ```
 ├─config                          
-├─model                           
-├─utils                           
+├─model                                                     
 ├─data                            
 ├─output                          
 │  eval.py                        
