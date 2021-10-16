@@ -18,8 +18,9 @@ This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YO
 
 The model is trained on COCO2017's train set and tested on COCO2017's testdev set (the training can be verified on val set first to evaluate the training of the model).
 
-The mAP given in the paper when the input size is 416x416 is 76.8%, and the mAP obtained in this project is 76.86%.
-![the result screenshot](result.JPG)
+The AP on testdev set given in the paper when the input size is 416x416 is 41.2%, and the AP obtained in this project is 41.2%.
+
+![result](result.JPG)
 
 ## 3、Dataset
 
