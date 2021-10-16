@@ -20,6 +20,7 @@
 该模型是在COCO2017的train集上训练，在COCO2017的testdev集上测试(训练时可以先在val集上验证，用于评估模型训练情况)。
 
 论文中给出的在输入尺寸为416x416时testdev集上的AP为41.2%，本项目得到的AP为41.2%。
+
 ![复现结果截图](result.JPG)
 
 ## 三、数据集
@@ -80,11 +81,11 @@ python3 eval.py -c configs/yolov4/yolov4_coco_test.yml
 将需要测试的图片放在目录data中， 运行下面指令，输出图片保存在output目录下；如果机器环境中有GPU，则将命令中 -o use_gpu=False 去掉
 
 ```bash
-python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/kite.jpg -o use_gpu=False
+python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/1.jpg -o use_gpu=False
 ```
 运行结果如下所示：
 
-![预测结果](output/dog.jpg)
+![预测结果](output/1.jpg)
 
 ## 六、代码结构与详细说明
 
