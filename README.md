@@ -1,30 +1,124 @@
 # Paddle-YOLOv4
 
-PaddlePaddle_v2.1 复现YOLOv4
+English | [简体中文](./README_CN.md)
 
-## 代码结构
+## 1、Introduction
 
-1. 本项目基于PaddleDetection开源项目，实现了YOLOv4的复现任务。
-2. 其中将YOLOv2模型分为了backbone部分、neck部分、head部分。backbone部分为cspdarknet，代码在ppdet/modeling/backbones/CSPDarkNet.py中；neck部分代码在ppdet/modeling/necks/yolov4_neck.py中；head部分代码在ppdet/modeling/heads中。
-3. YOLOv4训练配置文件在configs/yolov4中。
+This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YOLOv2 is the second generation model of YOLO series. For the first time, it makes YOLO series model detect based on anchor frame, and proposes multi-scale training methods, which lays the foundation for subsequent YOLOv3, YOLOv4, YOLOv5 and PPYOLO.
 
-## 开始训练
+**Paper:**
+- [1] Redmon J, Farhadi A. YOLO9000: better, faster, stronger[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2017: 7263-7271.
 
-1. cd进本项目目录。
-2. pip install -r requirements.txt
-3. 在顶层目录下创建output文件夹，并在此处存放主干网络cspdarknet的预训练权重（我已经将官方提供的转为了pdparams格式），地址为：https://aistudio.baidu.com/aistudio/datasetdetail/103994 。
-4. 本项目使用四卡Tesla V100-32G即可训练，注意：coco数据集应该提前下好，并且将所有的压缩包全部解压到顶层目录下的coco文件夹中（数据集地址为：https://aistudio.baidu.com/aistudio/datasetdetail/7122 ）。如果出现数据集地址问题，请在configs/datasets/coco_detection.yml文件中将相应地址改为绝对路径。
-5. python -m paddle.distributed.launch --gpus 0,1,2,3 tools/train.py -c configs/yolov4/yolov4_coco.yml --eval
-6. 至此训练开始。
+**Reference project：**
+- [https://github.com/pjreddie/darknet](https://github.com/pjreddie/darknet)
 
-## 评估
+**The link of aistudio：**
+- notebook：[https://aistudio.baidu.com/aistudio/projectdetail/2290810](https://aistudio.baidu.com/aistudio/projectdetail/2290810)
 
-1. 如果您不想自己训练，可以在顶层文件下创建output/yolov2_voc文件夹，并下载我训练好的权重数据到此文件夹中（地址为：https://aistudio.baidu.com/aistudio/datasetdetail/107066 ），然后运行第2步中命令。
-2. python tools/eval.py -c configs/yolov4/yolov4_coco_test.yml （使用上述权重即可在顶层目录下得到结果bbox.json，将此结果提交至测评服务器，可得在测试集上结果为41.2%）
+## 2、Accuracy
 
-从测评服务器件上下载的结果见：[提交结果](./stdout.txt)
+The model is trained on the trainval set of VOC2007 and VOC2012, and tested on the test set of VOC2007.
 
-![result](./result.JPG)
+The mAP given in the paper when the input size is 416x416 is 76.8%, and the mAP obtained in this project is 76.86%.
+![the result screenshot](result.JPG)
 
-(附注：训练日志也在网址：https://aistudio.baidu.com/aistudio/datasetdetail/107066 ，此为AI Studio脚本任务生成的日志)
-(由于AI Studio脚本任务的时长限制，三天后任务自动终止并得到日志trainer-0.log.txt，我只好接着断点再进行训练并得到日志trainer-1.log.txt)
+## 3、Dataset
+
+[VOC2007+VOC2012 Dataset](https://aistudio.baidu.com/aistudio/datasetdetail/63105)
+- Dataset size:
+    - Training set: 16,551
+    - Test set: 4952
+- Data format: standard VOC format, marked with rectangular boxes
+## 4、Requirements
+
+- Hardware：CPU、GPU（Tesla V100-32G is recommended）
+
+- Framework：
+  - PaddlePaddle >= 2.1.2
+  
+## 5、Quick Start
+
+### step1: clone 
+
+```bash
+# clone this repo
+git clone https://github.com/nuaaceieyty/Paddle-YOLOv2.git
+cd Paddle-YOLOv2
+export PYTHONPATH=./
+```
+**Install dependencies**
+```bash
+pip install -r requestments.txt
+```
+
+### step2: Training
+
+1. Create an Output folder in the top level directory and download darknet backbone pre-training weights (I have converted the official darknet weight to .pdparams) here: https://aistudio.baidu.com/aistudio/datasetdetail/103069.
+2. This project can be trained using a single card Tesla V100-32G. Note: VOC dataset should be prepared in advance, and decompressed into the data directory under the top-level directory (data set address is: https://aistudio.baidu.com/aistudio/datasetdetail/63105). If the dataset address is incorrect, change the corresponding address to the absolute path in the configs/datasets/voc.yml file.
+
+```bash
+python3 train.py -c configs/yolov2/yolov2_voc.yml --eval --fp16
+```
+
+### step3: Evaluating
+Note: Make sure the best_model.pdparams file is in the output directory.
+```bash
+python3 tools/eval.py -c configs/yolov2/yolov2_voc.yml
+```
+
+### Prediction using pre training model
+
+Put the images to be tested in the data directory, run the following command, and save the output images in the Output directory; If there is a GPU in the machine environment, delete -o use_gpu=False from the command
+
+```bash
+python3 predict.py -c configs/yolov2/yolov2_voc.yml --infer_img data/dog.jpg -o use_gpu=False
+```
+The result is shown as follows：
+
+![result](output/dog.jpg)
+
+## 六、Code structure
+
+### 6.1 Structure
+
+```
+├─config                          
+├─model                           
+├─utils                           
+├─data                            
+├─output                          
+│  eval.py                        
+│  predict.py                     
+│  README.md                      
+│  README_CN.md                   
+│  requirements.txt               
+│  train.py                       
+```
+### 6.2 Parameter description
+
+Parameters related to training and evaluation can be set in `train.py`, as follows:
+
+|  Parameters   | default  | description | other |
+|  ----  |  ----  |  ----  |  ----  |
+| config| None, Mandatory| Configuration file path ||
+| --eval| None, Optional| Evaluate after an epoch |If you don't select this, you might have trouble finding the best_model|
+| --fp16| None, Optional| Semi-precision training |If this option is not selected, 32GB of video memory may not be sufficient|
+| --resume| None, Optional | Recovery training |For example: --resume output/yolov2_voc/66|
+
+### 6.3 Training process
+
+See 5、Quick Start
+
+## 7、Model information
+
+For other information about the model, please refer to the following table:
+
+| information | description |
+| --- | --- |
+| Author | YU Tianyang(EICAS)|
+| Date | 2021.08 |
+| Framework version | Paddle 2.1.2 |
+| Application scenarios | Object detection |
+| Support hardware | GPU、CPU |
+| Download link | [Pre training model](https://aistudio.baidu.com/aistudio/datasetdetail/103354)|
+| Online operation | [notebook](https://aistudio.baidu.com/aistudio/projectdetail/2290810)|
