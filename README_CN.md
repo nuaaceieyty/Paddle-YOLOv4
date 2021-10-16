@@ -13,7 +13,7 @@
 - [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 
 **项目aistudio地址：**
-- notebook任务：[https://aistudio.baidu.com/aistudio/projectdetail/2290810](https://aistudio.baidu.com/aistudio/projectdetail/2290810)
+- notebook任务：[https://aistudio.baidu.com/aistudio/projectdetail/2479219](https://aistudio.baidu.com/aistudio/projectdetail/2479219)
 
 ## 二、复现精度
 
@@ -56,7 +56,7 @@ pip install -r requestments.txt
 ### step2: 训练
 
 1. 在顶层目录下创建output文件夹，并在此处下载主干网络Darknet19的预训练权重（我已经将darknet官方提供的转为了pdparams格式），地址为：https://aistudio.baidu.com/aistudio/datasetdetail/103069 。
-2. 本项目使用单卡Tesla V100-32G即可训练，注意：voc数据集应该提前下好，并且解压到顶层目录下的data目录中（数据集地址为：https://aistudio.baidu.com/aistudio/datasetdetail/63105 ）。如果出现数据集地址问题，请在configs/datasets/voc.yml文件中将相应地址改为绝对路径。
+2. 本项目使用四卡Tesla V100-32G训练，注意：COCO数据集应该提前下好，并且解压到顶层目录下的data目录中（数据集地址为：https://aistudio.baidu.com/aistudio/datasetdetail/7122 ）。如果出现数据集地址问题，请在configs/datasets/voc.yml文件中将相应地址改为绝对路径。
 
 ```bash
 python3 train.py -c configs/yolov2/yolov2_voc.yml --eval --fp16
@@ -122,4 +122,4 @@ python3 predict.py -c configs/yolov2/yolov2_voc.yml --infer_img data/dog.jpg -o 
 | 应用场景 | 目标检测 |
 | 支持硬件 | GPU、CPU |
 | 下载链接 | [训练好的模型](https://aistudio.baidu.com/aistudio/datasetdetail/107066)|
-| 在线运行 | [notebook](https://aistudio.baidu.com/aistudio/projectdetail/2290810)|
+| 在线运行 | [notebook](https://aistudio.baidu.com/aistudio/projectdetail/2479219)|
