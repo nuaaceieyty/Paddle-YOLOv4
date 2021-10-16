@@ -80,11 +80,11 @@ Zip the bbox. Json file generated in the live directory and send it to the evalu
 Put the images to be tested in the data directory, run the following command, and save the output images in the Output directory; If there is a GPU in the machine environment, delete -o use_gpu=False from the command
 
 ```bash
-python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/kite.jpg -o use_gpu=False
+python3 predict.py -c configs/yolov4/yolov4_coco.yml --infer_img data/1.jpg -o use_gpu=False
 ```
 The result is shown as follows：
 
-![result](output/dog.jpg)
+![result](output/1.jpg)
 
 ## 六、Code structure
 
