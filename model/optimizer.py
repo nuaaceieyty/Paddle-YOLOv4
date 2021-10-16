@@ -30,7 +30,7 @@ from model.core.workspace import register, serializable
 
 __all__ = ['LearningRate', 'OptimizerBuilder']
 
-from ppdet.utils.logger import setup_logger
+from model.utils.logger import setup_logger
 logger = setup_logger(__name__)
 
 
