@@ -7,7 +7,7 @@ English | [简体中文](./README_CN.md)
 This project is based on the paddlepaddle_V2.1 framework to reproduce YOLOv4. YOLOv4 is the fourth generation model of YOLO series. While retaining the encoding and decoding mode of YOLOv3 detection head, YOLOv4 uses stronger backbone network, stronger feature fusion module and more data enhancement modes, so that the model performance is significantly improved compared with YOLOv3, and the inference speed is still very fast.
 
 **Paper:**
-- [1] Bochkovskiy A,Wang C Y,Liao H.YOLOv4:Optimal Speed and Accuracy of Object Detection[J].2020.
+- [1] Bochkovskiy A, Wang C Y, Liao H. YOLOv4: Optimal Speed and Accuracy of Object Detection[J].2020.
 
 **Reference project：**
 - [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
