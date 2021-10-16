@@ -10,7 +10,7 @@
 - [1] Redmon J, Farhadi A. YOLO9000: better, faster, stronger[C]//Proceedings of the IEEE conference on computer vision and pattern recognition. 2017: 7263-7271.
 
 **参考项目：**
-- [https://github.com/pjreddie/darknet](https://github.com/pjreddie/darknet)
+- [https://github.com/AlexeyAB/darknet](https://github.com/AlexeyAB/darknet)
 
 **项目aistudio地址：**
 - notebook任务：[https://aistudio.baidu.com/aistudio/projectdetail/2290810](https://aistudio.baidu.com/aistudio/projectdetail/2290810)
